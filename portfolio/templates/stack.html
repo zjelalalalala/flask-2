@@ -1,0 +1,45 @@
+{% extends "base.html" %}
+{% from "_macros.html" import back_links %}
+
+{% block title %}Stack Applications{% endblock %}
+{% block heading %}Stack Applications{% endblock %}
+
+{% block content %}
+<p>
+    Explore different applications of the Stack data structure.
+    A stack follows the <b>LIFO</b> principle: <b>L</b>ast <b>I</b>n, <b>F</b>irst <b>O</b>ut,
+    like a pile of pancakes 🥞.
+</p>
+
+<h2>Choose an Application</h2>
+
+<div class="card-grid">
+    <a class="card" href="{{ url_for('stack_page') }}">
+        <span class="icon">📚</span>
+        <span class="name">Push, Pop &amp; Peek</span>
+        <span class="desc">The three core stack operations.</span>
+    </a>
+    <a class="card" href="{{ url_for('undo_typing') }}">
+        <span class="icon">↩️</span>
+        <span class="name">Undo Typing</span>
+        <span class="desc">Save versions, then go back in time.</span>
+    </a>
+    <a class="card" href="{{ url_for('reverse_string') }}">
+        <span class="icon">🔄</span>
+        <span class="name">Reverse a String</span>
+        <span class="desc">Push every letter, pop them back out.</span>
+    </a>
+    <a class="card" href="{{ url_for('number_bases') }}">
+        <span class="icon">🔢</span>
+        <span class="name">Number Bases</span>
+        <span class="desc">Decimal to binary, octal or hex.</span>
+    </a>
+    <a class="card" href="{{ url_for('infix_postfix') }}">
+        <span class="icon">🧮</span>
+        <span class="name">Infix to Postfix</span>
+        <span class="desc">A+B*C becomes A B C * +</span>
+    </a>
+</div>
+
+{{ back_links() }}
+{% endblock %}

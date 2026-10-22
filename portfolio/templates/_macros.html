@@ -1,0 +1,38 @@
+{# Reusable bits shared by several pages #}
+
+{% macro work_cards() %}
+<div class="card-grid">
+    <a class="card" href="{{ url_for('uppercase') }}">
+        <span class="icon">🔠</span>
+        <span class="name">Uppercase</span>
+        <span class="desc">Turn any text into LOUD text.</span>
+    </a>
+    <a class="card" href="{{ url_for('acircle') }}">
+        <span class="icon">⭕</span>
+        <span class="name">Area of a Circle</span>
+        <span class="desc">Give a radius, get the area.</span>
+    </a>
+    <a class="card" href="{{ url_for('atriangle') }}">
+        <span class="icon">🔺</span>
+        <span class="name">Area of a Triangle</span>
+        <span class="desc">Base × height ÷ 2.</span>
+    </a>
+    <a class="card" href="{{ url_for('linkedlist') }}">
+        <span class="icon">🔗</span>
+        <span class="name">Linked List</span>
+        <span class="desc">Add and delete nodes, see the chain.</span>
+    </a>
+    <a class="card" href="{{ url_for('stack_menu') }}">
+        <span class="icon">🥞</span>
+        <span class="name">Stack Apps</span>
+        <span class="desc">Undo, reverse, base converter &amp; more.</span>
+    </a>
+</div>
+{% endmacro %}
+
+{% macro back_links(stack=False) %}
+<div class="btn-row">
+    {% if stack %}<a class="btn btn-blue" href="{{ url_for('stack_menu') }}">← Stack Apps</a>{% endif %}
+    <a class="btn btn-purple" href="{{ url_for('works') }}">← All Works</a>
+</div>
+{% endmacro %}

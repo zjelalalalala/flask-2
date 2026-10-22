@@ -1,0 +1,34 @@
+{% extends "base.html" %}
+{% from "_macros.html" import back_links %}
+
+{% block title %}Area of a Triangle{% endblock %}
+{% block heading %}Area of a Triangle{% endblock %}
+
+{% block content %}
+<p>Formula: <code>A = ½ × base × height</code></p>
+
+<form action="{{ url_for('atriangle') }}" method="post">
+    <label for="base">Enter the base:</label><br>
+    <input type="number" id="base" name="base" value="{{ base }}"
+           min="0" step="any" placeholder="e.g. 10" required>
+    <br>
+    <label for="height">Enter the height:</label><br>
+    <input type="number" id="height" name="height" value="{{ height }}"
+           min="0" step="any" placeholder="e.g. 6" required>
+    <br>
+    <input type="submit" value="Compute">
+</form>
+
+{% if message %}
+<p class="message">{{ message }}</p>
+{% endif %}
+
+{% if result is not none %}
+<div class="result">
+    <p>Base: {{ base }} &nbsp;|&nbsp; Height: {{ height }}</p>
+    <p class="big">Area = {{ "%.2f"|format(result) }}</p>
+</div>
+{% endif %}
+
+{{ back_links() }}
+{% endblock %}

@@ -1,0 +1,32 @@
+{% extends "base.html" %}
+{% from "_macros.html" import back_links %}
+
+{% block title %}Undo Typing{% endblock %}
+{% block heading %}Undo Typing{% endblock %}
+
+{% block content %}
+<p>
+    Type your text and save each version.
+    Use the Undo button to restore your previous text.
+</p>
+
+<form action="{{ url_for('undo_typing') }}" method="POST">
+    <input type="text" name="text" placeholder="Type something here"
+           value="{{ current_text }}">
+    <button type="submit" name="action" value="save">Save Text</button>
+    <button type="submit" name="action" value="undo" formnovalidate>Undo</button>
+</form>
+
+{% if message %}
+<p class="message">{{ message }}</p>
+{% endif %}
+
+<h2>Current Text</h2>
+{% if current_text %}
+<div class="result"><p class="big">{{ current_text }}</p></div>
+{% else %}
+<p class="empty-note">No text entered yet. ✦</p>
+{% endif %}
+
+{{ back_links(stack=True) }}
+{% endblock %}

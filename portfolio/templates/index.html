@@ -1,0 +1,70 @@
+{% extends "base.html" %}
+{% from "_macros.html" import work_cards %}
+
+{% block title %}Home{% endblock %}
+
+{% block main %}
+
+<div class="video-banner">
+    <video autoplay muted loop playsinline>
+        <source src="{{ url_for('static', filename='images/banner.mp4') }}" type="video/mp4">
+        Your browser does not support the video tag.
+    </video>
+</div>
+
+<section class="window pink">
+    <div class="window-bar">
+        <span class="dots"><i></i><i></i><i></i></span>
+        <h2 class="window-title">welcome.exe</h2>
+    </div>
+    <div class="window-body hero-body">
+
+        <div class="starburst" aria-hidden="true"><span>NEW!<br>2026</span></div>
+
+
+        <h1 class="hero-title">Welcome to my portfolio!</h1>
+
+        <p>
+            Hello! I'm <b>Yieandzje Marxois U. Labasbas</b>,
+            a Computer Engineering student interested in
+            programming, technology, and cybersecurity.
+        </p>
+
+        <div class="btn-row">
+            <a class="btn btn-pink" href="{{ url_for('profile') }}">About Me</a>
+            <a class="btn btn-blue" href="{{ url_for('works') }}">See My Works</a>
+            <a class="btn btn-orange" href="{{ url_for('contact') }}">Say Hi!</a>
+        </div>
+
+        <img src="{{ url_for('static', filename='images/decor-left.png') }}"
+             class="sticker sticker-left" alt="" onerror="this.remove()">
+        <img src="{{ url_for('static', filename='images/decor-right.png') }}"
+             class="sticker sticker-right" alt="" onerror="this.remove()">
+    </div>
+</section>
+
+<section class="window">
+    <div class="window-bar">
+        <span class="dots"><i></i><i></i><i></i></span>
+        <h2 class="window-title">My Programming Works</h2>
+    </div>
+    <div class="window-body">
+        <p>Here are some of the programming activities and applications I've worked on. Click a card to try it!</p>
+        {{ work_cards() }}
+    </div>
+</section>
+
+<section class="window green">
+    <div class="window-bar">
+        <span class="dots"><i></i><i></i><i></i></span>
+        <h2 class="window-title">Explore My Portfolio</h2>
+    </div>
+    <div class="window-body">
+        <p>
+            Visit my <a href="{{ url_for('profile') }}">profile</a> to learn more about me, or
+            check the <a href="{{ url_for('contact') }}">contact page</a> to find me online.
+        </p>
+    </div>
+</section>
+
+{% endblock %}

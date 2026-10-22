@@ -1,0 +1,27 @@
+{% extends "base.html" %}
+{% from "_macros.html" import back_links %}
+
+{% block title %}Reverse a String{% endblock %}
+{% block heading %}Reverse a String{% endblock %}
+
+{% block content %}
+<p>
+    This application uses a Stack data structure to reverse the characters
+    in a word or sentence: every letter is pushed in, then popped back out.
+</p>
+
+<form action="{{ url_for('reverse_string') }}" method="POST">
+    <input type="text" name="text" placeholder="Enter a word or sentence"
+           value="{{ original }}" required>
+    <button type="submit">Reverse String</button>
+</form>
+
+{% if result is not none %}
+<div class="result">
+    <p>Original: {{ original }}</p>
+    <p class="big">{{ result }}</p>
+</div>
+{% endif %}
+
+{{ back_links(stack=True) }}
+{% endblock %}

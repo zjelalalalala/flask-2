@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}Home{% endblock %} ✦ {{ site_name }}</title>
+
+    <!-- Y2K fonts (the site still works with fallback fonts if offline) -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@400;600;700&family=Nunito:wght@400;700;800&family=Pacifico&family=VT323&display=swap"
+          rel="stylesheet">
+
+    <!-- Font Awesome (social icons) -->
+    <link rel="stylesheet"
+          href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+
+<body>
+
+<!-- floating decorations -->
+<div class="decor-star star-1" aria-hidden="true">✦</div>
+<div class="decor-star star-2" aria-hidden="true">★</div>
+<div class="decor-star star-3" aria-hidden="true">✦</div>
+<div class="decor-star star-4" aria-hidden="true">★</div>
+<div class="decor-star star-5" aria-hidden="true">✧</div>
+<div class="decor-star star-6" aria-hidden="true">✦</div>
+
+<div class="page">
+
+    <!-- ===== MASTHEAD: banner, nav, ticker ===== -->
+    <header class="masthead">
+
+        <div class="banner">
+            <video class="banner-video" autoplay muted loop playsinline preload="auto" aria-hidden="true">
+                <source src="{{ url_for('static', filename='images/banner.mp4') }}" type="video/mp4">
+                <source src="{{ url_for('static', filename='images/banner.webm') }}" type="video/webm">
+            </video>
+            <a class="logo" href="{{ url_for('index') }}">{{ site_name }}</a>
+            <p class="tagline">★ code &bull; circuits &bull; cybersecurity ★</p>
+        </div>
+
+        {% set path = request.path %}
+        <nav class="main-nav" aria-label="Main navigation">
+            <a href="/" class="{{ 'active' if path == '/' }}">Home</a>
+            <a href="/profile" class="{{ 'active' if path.startswith('/profile') }}">Profile</a>
+            <a href="/works" class="{{ 'active' if path.startswith('/works') }}">Works</a>
+            <a href="/contact" class="{{ 'active' if path.startswith('/contact') }}">Contact</a>
+        </nav>
+
+        <div class="ticker" aria-hidden="true">
+            <div class="ticker-track">
+                <span class="ticker-group">★ WELCOME TO MY PAGE ★ DATA STRUCTURES &amp; ALGORITHMS PORTFOLIO ★ PUSH, POP, PEEK ★ LIFO = LAST IN, FIRST OUT ★ THANKS FOR VISITING :) </span>
+                <span class="ticker-group">★ WELCOME TO MY PAGE ★ DATA STRUCTURES &amp; ALGORITHMS PORTFOLIO ★ PUSH, POP, PEEK ★ LIFO = LAST IN, FIRST OUT ★ THANKS FOR VISITING :) </span>
+            </div>
+        </div>
+
+    </header>
+
+    <!-- ===== BODY: sidebar + content ===== -->
+    <div class="layout">
+
+        <aside class="sidebar">
+
+            <section class="window mini">
+                <div class="window-bar">
+                    <span class="dots"><i></i><i></i><i></i></span>
+                    <h2 class="window-title">My Works</h2>
+                </div>
+                <div class="window-body">
+                    <nav class="side-menu" aria-label="Works">
+                        <a href="{{ url_for('uppercase') }}">Uppercase</a>
+                        <a href="{{ url_for('acircle') }}">Circle Area</a>
+                        <a href="{{ url_for('atriangle') }}">Triangle Area</a>
+                        <a href="{{ url_for('linkedlist') }}">Linked List</a>
+                        <a href="{{ url_for('stack_menu') }}">Stack Apps</a>
+                    </nav>
+                </div>
+            </section>
+
+            <section class="window mini green">
+                <div class="window-bar">
+                    <span class="dots"><i></i><i></i><i></i></span>
+                    <h2 class="window-title">Visitors</h2>
+                </div>
+                <div class="window-body">
+                    <div class="counter" aria-label="Visitor count {{ visits|int }}">
+                        {% for digit in visits %}<span>{{ digit }}</span>{% endfor %}
+                    </div>
+                    <p class="small-note">you are visitor #{{ visits|int }}!</p>
+                </div>
+            </section>
+
+            <section class="window mini purple">
+                <div class="window-bar">
+                    <span class="dots"><i></i><i></i><i></i></span>
+                    <h2 class="window-title">Motto</h2>
+                </div>
+                <div class="window-body">
+                    <p class="motto-mini">“You'll never come second if you put God first”</p>
+                </div>
+            </section>
+
+        </aside>
+
+        <main class="content">
+            {% block main %}
+            <section class="window">
+                <div class="window-bar">
+                    <span class="dots"><i></i><i></i><i></i></span>
+                    <h1 class="window-title">{% block heading %}{% endblock %}</h1>
+                </div>
+                <div class="window-body">
+                    {% block content %}{% endblock %}
+                </div>
+            </section>
+            {% endblock %}
+        </main>
+
+    </div>
+
+    <!-- ===== FOOTER ===== -->
+    <footer class="site-footer">
+        <div class="badges" aria-hidden="true">
+            <span class="badge">FLASK</span>
+            <span class="badge">PYTHON 3</span>
+            <span class="badge">PUP CpE</span>
+            <span class="badge">TECH EXPLORER</span>
+        </div>
+        <p>© 2026 Yieandzje Marxois U. Labasbas ✦ Best viewed with a big smile :)</p>
+    </footer>
+
+</div>
+
+<script>
+    // Make sure the banner video starts. Some browsers block autoplay at first,
+    // so if that happens we start it on the visitor's first click/tap/key/scroll.
+    (function () {
+        var video = document.querySelector('.banner-video');
+        if (!video) return;
+
+        video.muted = true;
+        video.loop = true;
+
+        function start() {
+            var attempt = video.play();
+            if (attempt && attempt.catch) {
+                attempt.catch(function () {});
+            }
+        }
+
+        // Safety net: if the MP4 can't be decoded by this browser, switch to the WebM copy.
+        var fallbackSrc = "{{ url_for('static', filename='images/banner.webm') }}";
+        function useFallback() {
+            if (video.currentSrc.indexOf('.webm') !== -1) return;
+            video.removeAttribute('src');
+            video.innerHTML = '<source src="' + fallbackSrc + '" type="video/webm">';
+            video.load();
+            start();
+        }
+        video.addEventListener('error', useFallback, true);
+        setTimeout(function () {
+            if (video.videoWidth === 0) useFallback();
+        }, 3000);
+
+        start();
+        video.addEventListener('canplay', start);
+
+        ['click', 'touchstart', 'keydown', 'scroll'].forEach(function (name) {
+            window.addEventListener(name, function once() {
+                start();
+                window.removeEventListener(name, once);
+            }, { passive: true });
+        });
+    })();
+</script>
+
+</body>
+</html>

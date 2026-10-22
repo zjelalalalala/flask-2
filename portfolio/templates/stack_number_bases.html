@@ -1,0 +1,40 @@
+{% extends "base.html" %}
+{% from "_macros.html" import back_links %}
+
+{% block title %}Number Bases{% endblock %}
+{% block heading %}Number Base Converter{% endblock %}
+
+{% block content %}
+<p>
+    Convert a decimal number into binary, octal, or hexadecimal.
+    This application uses a Stack to reverse the remainders
+    generated during conversion.
+</p>
+
+<form action="{{ url_for('number_bases') }}" method="POST">
+    <input type="number" name="number" placeholder="Enter a decimal number"
+           value="{{ number if number is not none else '' }}" min="0" required>
+    <br>
+    <label for="base">Convert to:</label>
+    <select name="base" id="base" required>
+        <option value="2"  {% if base == 2 %}selected{% endif %}>Binary (Base 2)</option>
+        <option value="8"  {% if base == 8 %}selected{% endif %}>Octal (Base 8)</option>
+        <option value="16" {% if base == 16 %}selected{% endif %}>Hexadecimal (Base 16)</option>
+    </select>
+    <button type="submit">Convert</button>
+</form>
+
+{% if message %}
+<p class="message">{{ message }}</p>
+{% endif %}
+
+{% if result is not none %}
+<div class="result">
+    <p>Decimal number: {{ number }}</p>
+    <p>Target base: {{ base }}</p>
+    <p class="big">{{ result }}</p>
+</div>
+{% endif %}
+
+{{ back_links(stack=True) }}
+{% endblock %}

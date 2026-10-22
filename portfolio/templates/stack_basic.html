@@ -1,0 +1,43 @@
+{% extends "base.html" %}
+{% from "_macros.html" import back_links %}
+
+{% block title %}Push, Pop &amp; Peek{% endblock %}
+{% block heading %}Stack Data Structure{% endblock %}
+
+{% block content %}
+<p>
+    A Stack is a linear data structure that follows
+    <b>LIFO</b> (Last In, First Out).
+</p>
+
+<h2>Push an Item</h2>
+<form action="{{ url_for('stack_page') }}" method="POST">
+    <input type="text" name="data" placeholder="Enter an item" required>
+    <button type="submit" name="action" value="push">Push</button>
+</form>
+
+<h2>Stack Operations</h2>
+<form action="{{ url_for('stack_page') }}" method="POST">
+    <button type="submit" name="action" value="pop">Pop</button>
+    <button type="submit" name="action" value="peek">Peek</button>
+</form>
+
+{% if message %}
+<p class="message">{{ message }}</p>
+{% endif %}
+
+<h2>Current Stack</h2>
+
+{% if items %}
+<ul class="stack-list">
+    {% for item in items %}
+    <li>{{ item }}</li>
+    {% endfor %}
+</ul>
+<p class="hint">The top of the stack is the first block.</p>
+{% else %}
+<p class="empty-note">The stack is empty. Push something! ✦</p>
+{% endif %}
+
+{{ back_links(stack=True) }}
+{% endblock %}

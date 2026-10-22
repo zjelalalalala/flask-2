@@ -1,0 +1,54 @@
+{% extends "base.html" %}
+
+{% block title %}Profile{% endblock %}
+{% block heading %}About Me{% endblock %}
+
+{% block content %}
+<div class="profile-grid">
+
+    <figure class="polaroid">
+        <img src="{{ url_for('static', filename='images/profile.jpg') }}"
+             alt="Profile photo of Yieandzje"
+             onerror="this.outerHTML='<div class=&quot;photo-fallback&quot;>📷</div>'">
+        <figcaption>that's me!</figcaption>
+    </figure>
+
+    <div>
+        <h2>Welcome to My Portfolio!</h2>
+        <p>
+            Hi! I'm Yieandzje Marxois U. Labasbas, a Computer Engineering student at
+            Polytechnic University of the Philippines. I work with software like
+            Visual Studio Code, Python, Canva, and WordPress. I'm interested in learning
+            new tricks and innovative designs, particularly in technology, programming,
+            and things that boost my growth.
+        </p>
+
+        <h2>Personal Information</h2>
+        <div class="info-list">
+            <div class="info-row"><span class="k">Name</span><span class="v">Yieandzje Marxois U. Labasbas</span></div>
+            <div class="info-row"><span class="k">Section</span><span class="v">2-1</span></div>
+            <div class="info-row"><span class="k">Course</span><span class="v">Bachelor of Science in Computer Engineering</span></div>
+            <div class="info-row"><span class="k">Subject</span><span class="v">Data Structures and Algorithm</span></div>
+        </div>
+    </div>
+
+</div>
+
+<h2>My Interests</h2>
+<ul class="chips">
+    <li>💻 Programming</li>
+    <li>🔌 Computer Engineering</li>
+    <li>🌐 Web Development</li>
+    <li>🔒 Cybersecurity</li>
+    <li>🚀 Technology</li>
+</ul>
+
+<h2>My Goals</h2>
+<p>
+    My goal is to continue improving my programming skills and gain more
+    experience in creating useful and meaningful technology.
+</p>
+
+<h2>My Motto</h2>
+<p class="motto">“You'll never come second if you put God first”</p>
+{% endblock %}

@@ -1,0 +1,10 @@
+{% extends "base.html" %}
+
+{% block title %}Page Not Found{% endblock %}
+{% block heading %}Oops!{% endblock %}
+
+{% block content %}
+<p class="big-404">404</p>
+<p style="text-align:center">This page wandered off into cyberspace. 🛸</p>
+<p style="text-align:center"><a class="btn" href="{{ url_for('index') }}">Take me home</a></p>
+{% endblock %}

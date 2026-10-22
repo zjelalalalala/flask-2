@@ -1,0 +1,33 @@
+{% extends "base.html" %}
+{% from "_macros.html" import back_links %}
+
+{% block title %}Infix to Postfix{% endblock %}
+{% block heading %}Infix to Postfix{% endblock %}
+
+{% block content %}
+<p>
+    Convert mathematical expressions from infix notation
+    to postfix notation using a stack.
+</p>
+<p class="hint">Example: <code>A+B*C</code> becomes <code>A B C * +</code></p>
+
+<form action="{{ url_for('infix_postfix') }}" method="POST">
+    <input type="text" name="expression"
+           placeholder="Enter expression, e.g. A+B*C"
+           value="{{ expression }}" required>
+    <button type="submit">Convert</button>
+</form>
+
+{% if message %}
+<p class="message">{{ message }}</p>
+{% endif %}
+
+{% if result %}
+<div class="result">
+    <p><strong>Infix:</strong> {{ expression }}</p>
+    <p class="big">{{ result }}</p>
+</div>
+{% endif %}
+
+{{ back_links(stack=True) }}
+{% endblock %}

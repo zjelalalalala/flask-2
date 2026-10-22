@@ -1,0 +1,10 @@
+{% extends "base.html" %}
+{% from "_macros.html" import work_cards %}
+
+{% block title %}My Works{% endblock %}
+{% block heading %}My Works{% endblock %}
+
+{% block content %}
+<p>Pick a program to play with. Each one is built with Python and Flask.</p>
+{{ work_cards() }}
+{% endblock %}

@@ -1,0 +1,25 @@
+{% extends "base.html" %}
+{% from "_macros.html" import back_links %}
+
+{% block title %}Uppercase{% endblock %}
+{% block heading %}Convert String to Uppercase{% endblock %}
+
+{% block content %}
+<p>Type anything and watch it turn into capital letters.</p>
+
+<form action="{{ url_for('uppercase') }}" method="post">
+    <label for="inputString">Enter a string:</label><br>
+    <input type="text" id="inputString" name="inputString"
+           value="{{ original }}" placeholder="hello world" required>
+    <input type="submit" value="Convert">
+</form>
+
+{% if result is not none %}
+<div class="result">
+    <p>Original: {{ original }}</p>
+    <p class="big">{{ result }}</p>
+</div>
+{% endif %}
+
+{{ back_links() }}
+{% endblock %}

@@ -1,0 +1,44 @@
+{% extends "base.html" %}
+{% from "_macros.html" import back_links %}
+
+{% block title %}Linked List{% endblock %}
+{% block heading %}Linked List{% endblock %}
+
+{% block content %}
+<p>
+    A linked list is a chain of <b>nodes</b>. Each node holds some data and a pointer to the next node.
+    New items are added at the end (the tail).
+</p>
+
+<h2>Add an Item</h2>
+<form action="{{ url_for('linkedlist') }}" method="post">
+    <input type="text" name="data" placeholder="Enter an item" required>
+    <button type="submit" name="action" value="add">Add</button>
+</form>
+
+<h2>Delete an Item</h2>
+<form action="{{ url_for('linkedlist') }}" method="post">
+    <input type="text" name="data" placeholder="Item to delete" required>
+    <button type="submit" name="action" value="delete">Delete</button>
+</form>
+
+{% if message %}
+<p class="message">{{ message }}</p>
+{% endif %}
+
+<h2>Current Linked List</h2>
+
+{% if items %}
+<ul class="node-list">
+    <li><span class="tag">HEAD</span></li>
+    {% for item in items %}
+    <li><span class="node"><span class="data">{{ item }}</span><span class="ptr">●</span></span></li>
+    {% endfor %}
+    <li class="end"><span class="tag null">NULL</span></li>
+</ul>
+{% else %}
+<p class="empty-note">The linked list is empty. Add an item above! ✦</p>
+{% endif %}
+
+{{ back_links() }}
+{% endblock %}
